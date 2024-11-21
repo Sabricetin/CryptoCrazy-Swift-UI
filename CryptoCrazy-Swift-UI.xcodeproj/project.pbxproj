@@ -15,6 +15,7 @@
 		1E8580352C8872BA0048BC9B /* Webservice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8580342C8872BA0048BC9B /* Webservice.swift */; };
 		1E8580372C8878480048BC9B /* CryptoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8580362C8878480048BC9B /* CryptoViewModel.swift */; };
 		1E8580392C888AE20048BC9B /* Color-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8580382C888AE20048BC9B /* Color-Extension.swift */; };
+		1EC8CE2E2CEF286C007B1EC7 /* Configuration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1EC8CE2D2CEF286C007B1EC7 /* Configuration.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		1E8580342C8872BA0048BC9B /* Webservice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Webservice.swift; sourceTree = "<group>"; };
 		1E8580362C8878480048BC9B /* CryptoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoViewModel.swift; sourceTree = "<group>"; };
 		1E8580382C888AE20048BC9B /* Color-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color-Extension.swift"; sourceTree = "<group>"; };
+		1EC8CE2D2CEF286C007B1EC7 /* Configuration.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Configuration.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +45,7 @@
 		1E20B13B2C875FE5004D706F = {
 			isa = PBXGroup;
 			children = (
+				1EC8CE2D2CEF286C007B1EC7 /* Configuration.plist */,
 				1E20B1462C875FE5004D706F /* CryptoCrazy-Swift-UI */,
 				1E20B1452C875FE5004D706F /* Products */,
 			);
@@ -169,6 +172,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1EC8CE2E2CEF286C007B1EC7 /* Configuration.plist in Resources */,
 				1E20B14F2C875FE6004D706F /* Preview Assets.xcassets in Resources */,
 				1E20B14C2C875FE6004D706F /* Assets.xcassets in Resources */,
 			);

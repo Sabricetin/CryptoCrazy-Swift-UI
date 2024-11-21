@@ -9,18 +9,24 @@ import SwiftUI
 
 struct MainView: View {
     
+  
+    
     @ObservedObject var cryptoListViewModel : CryptoListViewModel
     
     init () {
         self.cryptoListViewModel = CryptoListViewModel()
     }
     var body: some View {
+        
        
         NavigationView {
             
             List(cryptoListViewModel.cryptoList /*id:\.id*/) { crypto in
                    
                 VStack (alignment: .leading) {
+                
+                    
+                    
                     Text(crypto.symbol)
                         .font(.system(size: 30))
                         .foregroundColor(Color(hex: "#A3208F"))
@@ -36,6 +42,9 @@ struct MainView: View {
                         .font(.system(size: 15))
                         .foregroundColor(Color(hex: "#081B64"))
                         .bold()
+                    
+                    
+                        
                 }
             }
             .navigationTitle(Text("Crypto Crazy"))
@@ -44,6 +53,9 @@ struct MainView: View {
             cryptoListViewModel.downloadCryptos()
         }
     }
+    
+    
+    
 }
 #Preview {
     MainView()

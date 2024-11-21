@@ -11,7 +11,7 @@ struct CryptoCurrency : Decodable , Identifiable {
     
     let id = UUID()
     let symbol : String
-    let  weightedAvgPrice : String
+    let weightedAvgPrice : String
     let volume : String
     let priceChange : String
     

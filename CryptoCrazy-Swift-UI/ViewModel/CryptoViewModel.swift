@@ -19,48 +19,57 @@ struct CryptoModel: Identifiable, Codable {
 
 class CryptoListViewModel: ObservableObject {
     
+   
+    
     @Published var cryptoList = [CryptoModel]()  // View'a bağlı olan veri
     
     // API'den veri indiren fonksiyon
     func downloadCryptos() {
-        let headers = [
-            "x-rapidapi-key": "2b377c5311msh5167a0b402e0210p127dabjsn69aae958db97",
-            "x-rapidapi-host": "binance43.p.rapidapi.com"
-        ]
         
-        let request = NSMutableURLRequest(url: NSURL(string: "https://binance43.p.rapidapi.com/ticker/24hr")! as URL,
-                                          cachePolicy: .useProtocolCachePolicy,
-                                          timeoutInterval: 10.0)
-        request.httpMethod = "GET"
-        request.allHTTPHeaderFields = headers
-        
-        let session = URLSession.shared
-        let dataTask = session.dataTask(with: request as URLRequest) { (data: Data?, response: URLResponse?, error: Error?) in
-            if let error = error {
-                print("API Hatası: \(error.localizedDescription)")
-                return
-            }
+        if let path = Bundle.main.path(forResource: "Configuration", ofType: "plist") ,
+           let config = NSDictionary(contentsOfFile: path),
+           let apiKey = config["APIKey"] as? String {
             
-            guard let data = data else {
-                print("Veri bulunamadı!")
-                return
-            }
+            let headers = [
+                "x-rapidapi-key": apiKey,
+                "x-rapidapi-host": "binance43.p.rapidapi.com"
+            ]
             
-            // JSON'u decode ediyoruz
-            do {
-                let decoder = JSONDecoder()
-                let cryptos = try decoder.decode([CryptoModel].self, from: data)  // JSON verisini [CryptoModel] olarak decode ediyoruz
-                
-                DispatchQueue.main.async {
-                    // cryptoList'i güncelliyoruz
-                    self.cryptoList = cryptos
+            let request = NSMutableURLRequest(url: NSURL(string: "https://binance43.p.rapidapi.com/ticker/24hr")! as URL , cachePolicy: .useProtocolCachePolicy , timeoutInterval: 10.0)
+            request.httpMethod = "GET"
+            request.allHTTPHeaderFields = headers
+            
+            let session = URLSession.shared
+            let dataTask = session.dataTask(with: request as URLRequest) { (data: Data?, response: URLResponse?, error: Error?) in
+                if let error = error {
+                    print("API Hatası: \(error.localizedDescription)")
+                    return
                 }
-            } catch {
-                print("JSON çözümleme hatası: \(error)")
+                
+                guard let data = data else {
+                    print("Veri bulunamadı!")
+                    return
+                }
+                
+                // JSON'u decode ediyoruz
+                do {
+                    let decoder = JSONDecoder()
+                    let cryptos = try decoder.decode([CryptoModel].self, from: data)  // JSON verisini [CryptoModel] olarak decode ediyoruz
+                    
+                    DispatchQueue.main.async {
+                        // cryptoList'i güncelliyoruz
+                        self.cryptoList = cryptos
+                    }
+                } catch {
+                    print("JSON çözümleme hatası: \(error)")
+                }
             }
-        }
 
-        dataTask.resume()
+            dataTask.resume()
+        } else {
+            print("Configuration.plist bulunmadı veya APIKey eksik !!! ")
+        }
+    
     }
 }
 
